@@ -3,20 +3,26 @@ import { jsonTax, toArray } from '../../database/database'
 import { TaxItem } from '../TaxItem.tsx/TaxItem'
 import './styles.css'
 import { useEffect, useState } from 'react'
-import { ItemsSelected, useItemSelect } from '../../hooks/useItemSelect'
+import { ItemsSelect, useItemSelect } from '../../hooks/useItemSelect'
+import { useDateMatchAmount } from '../../hooks/useDateMatchAmount'
+
+const itemsTax = jsonTax.map((tax: any) => {
+    const { amount } = useDateMatchAmount(tax)
+    return Object.assign(tax, { amount: amount, checked: false })
+})
 
 export const TableItems = () => {
     const [checkedAll, setCheckedAll] = useState(false)
-    const { addItem, deleteItem, itemsSelected, uncheckAll, checkedAllItems } = useItemSelect()
+    const { selectItem, unselectItem, itemsToCheck } = useItemSelect(itemsTax)
 
     const toggleCheckedAll = () => {
         setCheckedAll(!checkedAll)
-        !checkedAll ? checkedAllItems(jsonTax) : uncheckAll()
+        // !checkedAll ? checkedAllItems(jsonTax) : uncheckAll()
     }
 
     useEffect(() => {
-        itemsSelected.count !== 0 && console.log(itemsSelected)
-    }, [itemsSelected])
+        console.log('Items listos: ', itemsToCheck)
+    }, [itemsToCheck])
 
     return (
         <div className="detail">
@@ -34,8 +40,8 @@ export const TableItems = () => {
                 <ListItemText id={'importe'} primary={`Importe`} />
             </ListItem>
 
-            {jsonTax.map((item, i) => (
-                <TaxItem key={i} item={item} addItem={addItem} deleteItem={deleteItem} />
+            {itemsToCheck.items.map((item, i) => (
+                <TaxItem key={i} item={item} addItem={selectItem} deleteItem={unselectItem} />
             ))}
         </div>
     )

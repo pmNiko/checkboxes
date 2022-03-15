@@ -2,69 +2,76 @@ import { useEffect, useState } from "react"
 import { TaxProps } from "../interfaces/interfaces"
 import { formatter } from '../utils/utils';
 import { useDateMatchAmount } from "./useDateMatchAmount";
+import { jsonTax } from '../database/database';
 
-export interface ItemsSelected {
+interface TaxAmountProps extends TaxProps {
+    amount: number,
+    checked: boolean
+}
+
+export interface ItemsSelect {
     items: TaxAmountProps[]
     totalAmount: number
     count: number
 }
 
-interface TaxAmountProps extends TaxProps {
-    amount: number
-}
-
-const initialValues: ItemsSelected = {
-    items: [],
-    totalAmount: 0,
-    count: 0,
-}
 
 
-export const useItemSelect = () => {
-    const [itemsSelected, setItemsSelected] = useState<ItemsSelected>(initialValues)
+export const useItemSelect = (itemsTax: any) => {
 
-    const addItem = (tax: TaxProps) => {
-        const { amount } = useDateMatchAmount(tax)
+    const [itemsSelected, setItemsSelected] = useState<ItemsSelect>({
+        items: [],
+        totalAmount: 0,
+        count: 0,
+    })
 
-        const item = { ...tax, amount }
+    const selectItem = (item_n_recibo: string) => {
+
+        const itemToChek = itemsSelected.items.filter(item => item.n_recibo === item_n_recibo).pop()
 
         setItemsSelected({
             ...itemsSelected,
-            items: [...itemsSelected.items, item],
+            items: [...itemsSelected.items.map(item => {
+                if (item.n_recibo === item_n_recibo) {
+                    item.checked = true
+                }
+                return item
+            })],
             count: itemsSelected.count + 1,
-            totalAmount: itemsSelected.totalAmount += Number(item.amount)
+            totalAmount: itemsSelected.totalAmount += Number(itemToChek?.amount)
         })
     }
 
 
-    const deleteItem = (item_n_recibo: string) => {
+    const unselectItem = (item_n_recibo: string) => {
         const itemDelete = itemsSelected.items.filter(item => item.n_recibo === item_n_recibo).pop()
 
         setItemsSelected({
             ...itemsSelected,
-            items: [...itemsSelected.items.filter(item => item !== itemDelete)],
+            items: [...itemsSelected.items.map(item => {
+                if (item.n_recibo === item_n_recibo) {
+                    item.checked = false
+                }
+                return item
+            })],
             count: itemsSelected.count - 1,
             totalAmount: itemsSelected.totalAmount -= Number(itemDelete!.amount)
         })
     }
 
-
-    const checkedAllItems = (items: TaxProps[]) => {
-        items.map(item => {
-            addItem(item)
+    useEffect(() => {
+        setItemsSelected({
+            ...itemsSelected,
+            items: [...itemsTax]
         })
-    }
 
-    const uncheckAll = () => {
-        setItemsSelected(initialValues)
-    }
+    }, [])
+
 
 
     return {
-        itemsSelected,
-        addItem,
-        deleteItem,
-        checkedAllItems,
-        uncheckAll
+        itemsToCheck: itemsSelected,
+        selectItem,
+        unselectItem
     }
 }

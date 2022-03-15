@@ -21,7 +21,7 @@ export const TaxItem = ({ item, addItem, deleteItem }: any) => {
 
     const toggle = () => {
         setChecked(!checked)
-        !checked ? addItem(item) : deleteItem(tax.n_recibo)
+        !checked ? addItem(item.n_recibo) : deleteItem(tax.n_recibo)
     }
 
     return (
