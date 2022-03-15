@@ -1,10 +1,7 @@
 import { Checkbox, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { useState } from 'react'
-import { useItemSelect } from '../../hooks/useItemSelect'
 import { useDateMatchAmount } from '../../hooks/useDateMatchAmount'
 
 export const TaxItem = ({ item, addItem, deleteItem }: any) => {
-    const [checked, setChecked] = useState(false)
     const { amount, date, id } = useDateMatchAmount(item)
     const {
         colgroup,
@@ -20,8 +17,7 @@ export const TaxItem = ({ item, addItem, deleteItem }: any) => {
     } = item
 
     const toggle = () => {
-        setChecked(!checked)
-        !checked ? addItem(item.n_recibo) : deleteItem(tax.n_recibo)
+        !tax.checked ? addItem(item.n_recibo) : deleteItem(tax.n_recibo)
     }
 
     return (
@@ -29,7 +25,7 @@ export const TaxItem = ({ item, addItem, deleteItem }: any) => {
             <ListItemIcon>
                 <Checkbox
                     onChange={toggle}
-                    checked={checked}
+                    checked={tax.checked}
                     inputProps={{ 'aria-labelledby': 'checkbox' }}
                 />
             </ListItemIcon>

@@ -17,7 +17,7 @@ export interface ItemsSelect {
 
 
 
-export const useItemSelect = (itemsTax: any) => {
+export const useItemSelect = (jsonTax: any) => {
 
     const [itemsSelected, setItemsSelected] = useState<ItemsSelect>({
         items: [],
@@ -59,19 +59,49 @@ export const useItemSelect = (itemsTax: any) => {
         })
     }
 
+    const checkedAllItems = () => {
+        setItemsSelected({
+            ...itemsSelected,
+            items: [...itemsSelected.items.map(item => {
+                item.checked = true
+                return item
+            })],
+            count: itemsSelected.items.length,
+            totalAmount: itemsSelected.items.reduce((acum, item) => acum + item.amount, 0)
+        })
+    }
+
+    const uncheckedAllItems = () => {
+        setItemsSelected({
+            ...itemsSelected,
+            items: [...itemsSelected.items.map(item => {
+                item.checked = false
+                return item
+            })],
+            count: 0,
+            totalAmount: 0
+        })
+    }
+
     useEffect(() => {
+        const itemsTax = jsonTax.map((tax: any) => {
+            const { amount } = useDateMatchAmount(tax)
+            return Object.assign(tax, { amount: amount, checked: false })
+        })
         setItemsSelected({
             ...itemsSelected,
             items: [...itemsTax]
         })
 
-    }, [])
+    }, [jsonTax])
 
 
 
     return {
         itemsToCheck: itemsSelected,
         selectItem,
-        unselectItem
+        unselectItem,
+        checkedAllItems,
+        uncheckedAllItems
     }
 }

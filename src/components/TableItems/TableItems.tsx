@@ -1,28 +1,19 @@
 import { Checkbox, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { jsonTax, toArray } from '../../database/database'
+import { useState } from 'react'
+import { jsonTax } from '../../database/database'
+import { useItemSelect } from '../../hooks/useItemSelect'
 import { TaxItem } from '../TaxItem.tsx/TaxItem'
 import './styles.css'
-import { useEffect, useState } from 'react'
-import { ItemsSelect, useItemSelect } from '../../hooks/useItemSelect'
-import { useDateMatchAmount } from '../../hooks/useDateMatchAmount'
-
-const itemsTax = jsonTax.map((tax: any) => {
-    const { amount } = useDateMatchAmount(tax)
-    return Object.assign(tax, { amount: amount, checked: false })
-})
 
 export const TableItems = () => {
     const [checkedAll, setCheckedAll] = useState(false)
-    const { selectItem, unselectItem, itemsToCheck } = useItemSelect(itemsTax)
+    const { itemsToCheck, selectItem, unselectItem, checkedAllItems, uncheckedAllItems } =
+        useItemSelect(jsonTax)
 
     const toggleCheckedAll = () => {
         setCheckedAll(!checkedAll)
-        // !checkedAll ? checkedAllItems(jsonTax) : uncheckAll()
+        !checkedAll ? checkedAllItems() : uncheckedAllItems()
     }
-
-    useEffect(() => {
-        console.log('Items listos: ', itemsToCheck)
-    }, [itemsToCheck])
 
     return (
         <div className="detail">
