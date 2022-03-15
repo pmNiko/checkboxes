@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { TaxProps } from "../interfaces/interfaces"
 import { formatter } from '../utils/utils';
+import { useDateMatchAmount } from "./useDateMatchAmount";
 
 export interface ItemsSelected {
     items: TaxAmountProps[]
@@ -12,15 +13,21 @@ interface TaxAmountProps extends TaxProps {
     amount: number
 }
 
+const initialValues: ItemsSelected = {
+    items: [],
+    totalAmount: 0,
+    count: 0,
+}
+
 
 export const useItemSelect = () => {
-    const [itemsSelected, setItemsSelected] = useState<ItemsSelected>({
-        items: [],
-        totalAmount: 0,
-        count: 0,
-    })
+    const [itemsSelected, setItemsSelected] = useState<ItemsSelected>(initialValues)
 
-    const addItem = (item: TaxAmountProps) => {
+    const addItem = (tax: TaxProps) => {
+        const { amount } = useDateMatchAmount(tax)
+
+        const item = { ...tax, amount }
+
         setItemsSelected({
             ...itemsSelected,
             items: [...itemsSelected.items, item],
@@ -42,12 +49,22 @@ export const useItemSelect = () => {
     }
 
 
+    const checkedAllItems = (items: TaxProps[]) => {
+        items.map(item => {
+            addItem(item)
+        })
+    }
 
+    const uncheckAll = () => {
+        setItemsSelected(initialValues)
+    }
 
 
     return {
         itemsSelected,
         addItem,
-        deleteItem
+        deleteItem,
+        checkedAllItems,
+        uncheckAll
     }
 }

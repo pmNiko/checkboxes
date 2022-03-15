@@ -7,10 +7,11 @@ import { ItemsSelected, useItemSelect } from '../../hooks/useItemSelect'
 
 export const TableItems = () => {
     const [checkedAll, setCheckedAll] = useState(false)
-    const { addItem, deleteItem, itemsSelected } = useItemSelect()
+    const { addItem, deleteItem, itemsSelected, uncheckAll, checkedAllItems } = useItemSelect()
 
     const toggleCheckedAll = () => {
         setCheckedAll(!checkedAll)
+        !checkedAll ? checkedAllItems(jsonTax) : uncheckAll()
     }
 
     useEffect(() => {
