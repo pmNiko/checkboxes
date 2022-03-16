@@ -70,9 +70,9 @@ export const datos: Tributos = {
     },
     4: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - TASA S/INMUEBLE Y CONTR.',
-        n_recibo: '7451749',
+        n_recibo: '7451005',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22005',
         id_fcobr: '',
         periodo: '2021-12', // 2
         idorigenconsulta: '5',
@@ -91,9 +91,9 @@ export const datos: Tributos = {
     },
     5: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - TASA S/INMUEBLE Y CONTR.',
-        n_recibo: '7484432',
+        n_recibo: '7484004',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22004',
         id_fcobr: '',
         periodo: '2022-01',
         idorigenconsulta: '5',
@@ -112,9 +112,9 @@ export const datos: Tributos = {
     },
     6: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - OBRAS PARTICULARES',
-        n_recibo: '7485942',
+        n_recibo: '7485003',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22003',
         id_fcobr: '',
         periodo: '2022-02',
         idorigenconsulta: '5',
@@ -133,9 +133,9 @@ export const datos: Tributos = {
     },
     7: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - TASA S/INMUEBLE Y CONTR.',
-        n_recibo: '7451749',
+        n_recibo: '7451002',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22002',
         id_fcobr: '',
         periodo: '2021-12', // 2
         idorigenconsulta: '5',
@@ -154,9 +154,9 @@ export const datos: Tributos = {
     },
     8: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - TASA S/INMUEBLE Y CONTR.',
-        n_recibo: '7484432',
+        n_recibo: '7484001',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22001',
         id_fcobr: '',
         periodo: '2022-01',
         idorigenconsulta: '5',
@@ -175,9 +175,9 @@ export const datos: Tributos = {
     },
     9: {
         colgroup: 'TCI - QUILIMBAY 156 (15-21-72-1576-0000) - OBRAS PARTICULARES',
-        n_recibo: '7485942',
+        n_recibo: '7485000',
         tribu: '01',
-        n_serie: '22884',
+        n_serie: '22000',
         id_fcobr: '',
         periodo: '2022-02',
         idorigenconsulta: '5',

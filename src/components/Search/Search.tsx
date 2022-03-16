@@ -1,18 +1,21 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import SendIcon from '@mui/icons-material/Send'
-import { ChangeEvent, useState } from 'react'
-
-import './styles.css'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { TaxContext } from '../../context/TaxContext'
+import { jsonTax } from '../../database/database'
 import { ButtonSubmit } from '../Button/ButtonSubmit'
+import './styles.css'
 
 interface Props {
     className: string
 }
 
 export const Search = ({ className }: Props) => {
-    console.log(className)
+    const { loadItems } = useContext(TaxContext)
+
+    useEffect(() => {
+        loadItems(jsonTax)
+    }, [])
 
     const [value, setValue] = useState('Controlled')
 

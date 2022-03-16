@@ -1,5 +1,4 @@
-
-export interface TribuProps {
+export type TribuProps = {
     colgroup: string
     n_recibo: string
     tribu: string
@@ -21,7 +20,6 @@ export interface TribuProps {
     enlegales: string
 }
 
-
 export interface TaxProps {
     n_recibo: string
     titulo: string
@@ -33,4 +31,8 @@ export interface TaxProps {
     fvalidez: string
     importeinteres: string
     tribuabrev: string
+}
+
+export interface Tributos {
+    [key: string]: TribuProps
 }

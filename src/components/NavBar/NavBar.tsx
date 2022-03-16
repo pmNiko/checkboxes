@@ -24,7 +24,7 @@ export const NavBar = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Facturación
                     </Typography>
-                    <Button color="inherit">
+                    <div color="inherit">
                         <span style={{ marginRight: '1em' }}>Login</span>
                         <IconButton
                             size="large"
@@ -35,7 +35,7 @@ export const NavBar = () => {
                         >
                             <AccountCircleIcon />
                         </IconButton>
-                    </Button>
+                    </div>
                 </Toolbar>
             </AppBar>
         </Box>

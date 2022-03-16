@@ -30,6 +30,11 @@
      font-size: smaller;
  }
 
+
+ .list-item-container #numero-recibo, #vencimiento, #importe {
+     text-align: justify;
+ }
+
  .resume {
     padding-top: 2.5em;
     padding-left: 2em;
