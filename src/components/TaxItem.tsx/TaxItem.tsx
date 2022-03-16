@@ -1,5 +1,6 @@
 import { Checkbox, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { useDateMatchAmount } from '../../hooks/useDateMatchAmount'
+import './styles.css'
 
 export const TaxItem = ({ item, addItem, deleteItem }: any) => {
     const { amount, date, id } = useDateMatchAmount(item)
@@ -21,7 +22,7 @@ export const TaxItem = ({ item, addItem, deleteItem }: any) => {
     }
 
     return (
-        <ListItem className="item-description">
+        <ListItem className="item-container">
             <ListItemIcon>
                 <Checkbox
                     onChange={toggle}

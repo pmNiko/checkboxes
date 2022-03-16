@@ -1,10 +1,45 @@
-.detail {
-    margin: 4%;
-    max-height: 50%;
-    max-width: 70%;
+.header-items{
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: dodgerblue;
+    border-radius: 15px 15px 0px 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
+.header-table {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+}
 
- .header-table span {
-     font-weight: bold;
+.header-table span {
+    font-weight: bold;
+    font-size: 0.9em; 
+}
+    
+.list-item-container{
+    padding-left: 2em;
+    height: 55%;
+    overflow-y: scroll;
+    overflow-x: hidden;
  }
+
+ .list-item-container span {
+     font-size: smaller;
+ }
+
+ .resume {
+    padding-top: 2.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.resume button {
+    padding-top: 0px !important;
+}
