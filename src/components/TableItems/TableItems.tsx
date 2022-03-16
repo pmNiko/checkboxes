@@ -9,6 +9,7 @@ import { ItemTaxProps } from '../../hooks/useItemsToCheck'
 import { ButtonSubmit } from '../Button/ButtonSubmit'
 import { TaxItem } from '../TaxItem.tsx/TaxItem'
 import './styles.css'
+import { formatter } from '../../utils/formater'
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -30,6 +31,8 @@ export const TableItems = ({ className }: Props) => {
         uncheckedAllItems,
         checkedAll,
     } = useContext(TaxContext)
+
+    console.log(formatter.format(totalAmount))
 
     const toggleCheckedAll = () => {
         !checkedAll ? checkedAllItems() : uncheckedAllItems()
@@ -67,7 +70,9 @@ export const TableItems = ({ className }: Props) => {
                     </IconButton>
                 </span>
                 <span style={{ paddingTop: '0.3em' }}>Total a pagar:</span>
-                <span style={{ paddingTop: '0.3em', marginRight: '2em' }}> $ {totalAmount} </span>
+                <span style={{ paddingTop: '0.3em', marginRight: '2em' }}>
+                    $ {formatter.format(totalAmount)}
+                </span>
                 <span style={{ marginLeft: '2em' }}>
                     <ButtonSubmit />
                 </span>

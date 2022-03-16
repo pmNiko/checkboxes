@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { TribuProps } from '../interfaces/interfaces'
 import { useDateMatchAmount } from './useDateMatchAmount'
+import { formatter, roundNumber } from '../utils/formater';
 
 export interface ItemTaxProps extends TribuProps {
     amount: number
@@ -54,7 +55,7 @@ export const useItemsToCheck = () => {
                 }),
             ],
             count: itemsToCheck.count + 1,
-            totalAmount: itemsToCheck.totalAmount + Number(itemToChek!.amount),
+            totalAmount: itemsToCheck.totalAmount + Number(itemToChek!.amount)
         })
     }
 
