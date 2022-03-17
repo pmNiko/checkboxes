@@ -30,9 +30,10 @@ export const TaxItem = ({ item, index }: Props) => {
 
     return (
         <ListItem
+            onClick={handleToggle}
             className={` 
             ${tax.checked && styles.itemCheckeado}
-                ${!tax.checked && index % 2 === 0 && styles.itemPar}`}
+            ${!tax.checked && index % 2 === 0 && styles.itemPar}`}
         >
             <ListItemIcon>
                 <Checkbox

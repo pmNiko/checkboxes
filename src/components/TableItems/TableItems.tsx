@@ -39,7 +39,7 @@ export const TableItems = ({ className }: Props) => {
     return (
         <div className={className}>
             <div className="header-items">
-                <span>Facturación número xxx</span>
+                <span>Facturación número {items[0]?.n_recibo}</span>
             </div>
             <ListItem className="header-table">
                 <ListItemIcon>
