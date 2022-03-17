@@ -4,9 +4,9 @@
     padding-left: 3em;
     padding-right: 3em;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: space-evenly;
     height: 75% !important;
     max-height: 75% !important;
 }
-

@@ -1,5 +1,5 @@
+import { TextField } from '@mui/material'
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { TaxContext } from '../../context/TaxContext'
 import { jsonTax } from '../../database/database'
@@ -10,6 +10,12 @@ interface Props {
     className: string
 }
 
+const initValues = {
+    name: '',
+    surname: '',
+    dni: '',
+}
+
 export const Search = ({ className }: Props) => {
     const { loadItems } = useContext(TaxContext)
 
@@ -17,10 +23,10 @@ export const Search = ({ className }: Props) => {
         loadItems(jsonTax)
     }, [])
 
-    const [value, setValue] = useState('Controlled')
+    const [value, setValue] = useState(initValues)
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value)
+    const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+        setValue({ ...value, [target.name]: target.value })
     }
 
     return (
@@ -37,10 +43,11 @@ export const Search = ({ className }: Props) => {
                 <div>
                     <TextField
                         id="standard-multiline-flexible"
-                        label="Multiline"
+                        label="Nombre"
+                        name="name"
                         multiline
                         maxRows={4}
-                        value={value}
+                        value={value.name}
                         onChange={handleChange}
                         variant="standard"
                     />
@@ -48,10 +55,11 @@ export const Search = ({ className }: Props) => {
                 <div>
                     <TextField
                         id="standard-multiline-flexible"
-                        label="Multiline"
+                        label="Apellido"
+                        name="surname"
                         multiline
                         maxRows={4}
-                        value={value}
+                        value={value.surname}
                         onChange={handleChange}
                         variant="standard"
                     />
@@ -59,10 +67,11 @@ export const Search = ({ className }: Props) => {
                 <div>
                     <TextField
                         id="standard-multiline-flexible"
-                        label="Multiline"
+                        label="DNI"
+                        name="dni"
                         multiline
                         maxRows={4}
-                        value={value}
+                        value={value.dni}
                         onChange={handleChange}
                         variant="standard"
                     />

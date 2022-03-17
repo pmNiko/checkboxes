@@ -14,25 +14,25 @@ export default function Footer() {
                 <Container maxWidth="lg">
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={4}>
-                            <Box borderBottom={1}>Help</Box>
+                            <Box borderBottom={1}>Centro de ayuda</Box>
                             <Box>
                                 <Link href="/" color="inherit">
-                                    Contact
+                                    Contacto
                                 </Link>
                             </Box>
                             <Box>
                                 <Link href="/" color="inherit">
-                                    Support
+                                    Soporte
                                 </Link>
                             </Box>
                             <Box>
                                 <Link href="/" color="inherit">
-                                    Privacy
+                                    Privado
                                 </Link>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Box borderBottom={1}>Account</Box>
+                            <Box borderBottom={1}>Cuenta</Box>
                             <Box>
                                 <Link href="/" color="inherit">
                                     Login
@@ -64,7 +64,23 @@ export default function Footer() {
                         </Grid>
                     </Grid>
                     <Box textAlign="center" pt={{ xs: 5, sm: 10 }} pb={{ xs: 5, sm: 0 }}>
-                        Develop by UI &reg; {new Date().getFullYear()}
+                        Develop by nikoDev &reg; {new Date().getFullYear()}
+                        <span
+                            style={{
+                                marginLeft: '1rem',
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            <a
+                                href="https://github.com/pmNiko"
+                                style={{
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Github Profile
+                            </a>
+                        </span>
                     </Box>
                 </Container>
             </Box>
