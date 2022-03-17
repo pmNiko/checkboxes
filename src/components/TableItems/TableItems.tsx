@@ -32,8 +32,6 @@ export const TableItems = ({ className }: Props) => {
         checkedAll,
     } = useContext(TaxContext)
 
-    console.log(formatter.format(totalAmount))
-
     const toggleCheckedAll = () => {
         !checkedAll ? checkedAllItems() : uncheckedAllItems()
     }
@@ -54,7 +52,7 @@ export const TableItems = ({ className }: Props) => {
                 <ListItemText id={'periodo'} primary={`Periodo`} />
                 <ListItemText id={'numero-recibo'} primary={`Número de Recibo`} />
                 <ListItemText id={'vencimiento'} primary={`Vencimiento Original`} />
-                <ListItemText id={'importe'} primary={`Importe`} />
+                <ListItemText id={'importe'} primary={`Importe correspondiente`} />
             </ListItem>
             <div className="list-item-container">
                 {items.map((item: ItemTaxProps, i: number) => (
