@@ -1,0 +1,12 @@
+.input-container {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 75% !important;
+    max-height: 75% !important;
+}
+
