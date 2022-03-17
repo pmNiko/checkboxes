@@ -1,5 +1,5 @@
-import { ItemsToCheck, ItemTaxProps } from 'hooks/useItemsToCheck'
 import { createContext } from 'react'
+import { ItemsToCheck, ItemTaxProps } from '../hooks/useItemsToCheck'
 
 interface Props {
     loadItems: (json: any) => void
@@ -10,6 +10,7 @@ interface Props {
     uncheckedAllItems: () => void
     itemsChecked: () => ItemTaxProps[]
     checkedAll: boolean
+    loaded: boolean
 }
 
 export const TaxContext = createContext({} as Props)

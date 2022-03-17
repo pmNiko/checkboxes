@@ -1,7 +1,6 @@
 import { Body } from '../components/Body/Body'
 import Footer from '../components/Footer/Footer'
 import { NavBar } from '../components/NavBar/NavBar'
-import { TableItems } from '../components/TableItems/TableItems'
 import { Provider } from '../context/TaxContext'
 import { useItemsToCheck } from '../hooks/useItemsToCheck'
 
@@ -15,6 +14,7 @@ export const BasicLayout = () => {
         uncheckedAllItems,
         itemsChecked,
         checkedAll,
+        loaded,
     } = useItemsToCheck()
 
     return (
@@ -28,6 +28,7 @@ export const BasicLayout = () => {
                 uncheckedAllItems,
                 itemsChecked,
                 checkedAll,
+                loaded,
             }}
         >
             <NavBar />

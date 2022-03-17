@@ -1,8 +1,5 @@
-import { Checkbox, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Checkbox, IconButton, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import Badge, { BadgeProps } from '@mui/material/Badge'
-import IconButton from '@mui/material/IconButton'
-import { styled } from '@mui/material/styles'
 import { useContext } from 'react'
 import { TaxContext } from '../../context/TaxContext'
 import { ItemTaxProps } from '../../hooks/useItemsToCheck'
@@ -10,6 +7,7 @@ import { ButtonSubmit } from '../Button/ButtonSubmit'
 import { TaxItem } from '../TaxItem.tsx/TaxItem'
 import './styles.css'
 import { formatter } from '../../utils/formater'
+import { Badge, BadgeProps, styled } from '@mui/material'
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -30,6 +28,7 @@ export const TableItems = ({ className }: Props) => {
         checkedAllItems,
         uncheckedAllItems,
         checkedAll,
+        loaded,
     } = useContext(TaxContext)
 
     const toggleCheckedAll = () => {
@@ -39,7 +38,7 @@ export const TableItems = ({ className }: Props) => {
     return (
         <div className={className}>
             <div className="header-items">
-                <span>Facturación número {items[0]?.n_recibo}</span>
+                <span>Facturación número {loaded && items[0].n_recibo}</span>
             </div>
             <ListItem className="header-table">
                 <ListItemIcon>
@@ -52,12 +51,16 @@ export const TableItems = ({ className }: Props) => {
                 <ListItemText id={'periodo'} primary={`Periodo`} />
                 <ListItemText id={'numero-recibo'} primary={`Número de Recibo`} />
                 <ListItemText id={'vencimiento'} primary={`Vencimiento Original`} />
-                <ListItemText id={'importe'} primary={`Importe correspondiente`} />
+                <ListItemText id={'importe'} primary={`Importe segun fecha de vencimiento`} />
             </ListItem>
             <div className="list-item-container">
-                {items.map((item: ItemTaxProps, i: number) => (
-                    <TaxItem key={item.n_recibo} item={item} index={i} />
-                ))}
+                {loaded ? (
+                    items.map((item: ItemTaxProps, i: number) => (
+                        <TaxItem key={item.n_recibo} item={item} index={i} />
+                    ))
+                ) : (
+                    <span>Cargando...</span>
+                )}
             </div>
             <div className="resume">
                 <span style={{ paddingTop: '0.1em', marginRight: '2em' }}>

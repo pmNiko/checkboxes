@@ -1,8 +1,6 @@
-
 import { useEffect, useState } from 'react'
 import { TribuProps } from '../interfaces/interfaces'
 import { useDateMatchAmount } from './useDateMatchAmount'
-import { formatter, roundNumber } from '../utils/formater';
 
 export interface ItemTaxProps extends TribuProps {
     amount: number
@@ -18,6 +16,7 @@ export interface ItemsToCheck {
 }
 
 export const useItemsToCheck = () => {
+    const [loaded, setLoaded] = useState(false)
     const { dateMatch, importByDate } = useDateMatchAmount()
     const [checkedAll, setCheckedAll] = useState(false)
     const [itemsToCheck, setItemsToCheck] = useState<ItemsToCheck>({
@@ -55,7 +54,7 @@ export const useItemsToCheck = () => {
                 }),
             ],
             count: itemsToCheck.count + 1,
-            totalAmount: itemsToCheck.totalAmount + Number(itemToChek!.amount)
+            totalAmount: itemsToCheck.totalAmount + Number(itemToChek!.amount),
         })
     }
 
@@ -121,6 +120,10 @@ export const useItemsToCheck = () => {
         }
     }, [itemsToCheck])
 
+    useEffect(() => {
+        itemsToCheck.items.length > 0 ? setLoaded(true) : setLoaded(false)
+    }, [itemsToCheck])
+
     return {
         loadItems,
         itemsToCheck,
@@ -130,5 +133,6 @@ export const useItemsToCheck = () => {
         uncheckedAllItems,
         itemsChecked,
         checkedAll,
+        loaded,
     }
 }

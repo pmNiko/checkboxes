@@ -1,4 +1,4 @@
-.header-items{
+.header-items {
     text-align: center;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -15,31 +15,30 @@
 
 .header-table span {
     font-weight: bold;
-    font-size: 0.9em; 
+    font-size: 0.9em;
 }
-    
-.list-item-container{
+
+.list-item-container {
     padding-left: 2em;
     height: 55%;
     width: 90%;
     overflow-y: scroll;
     overflow-x: hidden;
- }
+}
 
- .list-item-container span {
-     font-size: smaller;
- }
+.list-item-container span {
+    font-size: smaller;
+}
 
-
- /* .list-item-container #numero-recibo, #vencimiento, #importe {
+/* .list-item-container #numero-recibo, #vencimiento, #importe {
      text-align: justify;
  } */
 
- .resume {
+.resume {
     padding-top: 2.5em;
     padding-left: 2em;
     padding-right: 2em;
-    text-align: center;    
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
