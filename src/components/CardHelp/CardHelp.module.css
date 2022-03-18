@@ -1,0 +1,40 @@
+.containerCard {
+    position: absolute;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.card {
+    z-index: 1;
+    height: 80%;
+    width: 25%;
+    background-color: #2ea3f2;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.card:hover {
+    z-index: 20;
+    border: 1px solid #aaa;
+}
+
+.image {
+    height: 25vh;
+}
+
+.title {
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 24px;
+}
+
+.description p {
+    padding: 10px;
+    font-size: 0.6em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
