@@ -8,6 +8,7 @@ import { TaxItem } from '../TaxItem.tsx/TaxItem'
 import './styles.css'
 import { formatter } from '../../utils/formater'
 import { Badge, BadgeProps, styled } from '@mui/material'
+import toast from 'react-hot-toast'
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -22,6 +23,9 @@ interface Props {
     className: string
 }
 
+const toastLoading = () => toast.loading('Procesando pago...')
+const toastSuccess = () => toast.success('Pago exitoso!')
+
 export const TableItems = ({ className }: Props) => {
     const {
         itemsToCheck: { items, count, totalAmount },
@@ -29,16 +33,26 @@ export const TableItems = ({ className }: Props) => {
         uncheckedAllItems,
         checkedAll,
         loaded,
+        resetItems,
     } = useContext(TaxContext)
 
     const toggleCheckedAll = () => {
         !checkedAll ? checkedAllItems() : uncheckedAllItems()
     }
 
+    const handlerForm = () => {
+        toastLoading()
+        setTimeout(() => {
+            toast.dismiss(toastLoading())
+            toastSuccess()
+            resetItems()
+        }, 3000)
+    }
+
     return (
         <div className={className}>
             <div className="header-items">
-                <span>Facturación número {loaded && items[0].n_recibo}</span>
+                <span>Facturación número {loaded() && items[0].n_recibo}</span>
             </div>
             <ListItem className="header-table">
                 <ListItemIcon>
@@ -54,7 +68,7 @@ export const TableItems = ({ className }: Props) => {
                 <ListItemText id={'importe'} primary={`Importe segun fecha de vencimiento`} />
             </ListItem>
             <div className="list-item-container">
-                {loaded ? (
+                {loaded() ? (
                     items.map((item: ItemTaxProps, i: number) => (
                         <TaxItem key={item.n_recibo} item={item} index={i} />
                     ))
@@ -75,7 +89,7 @@ export const TableItems = ({ className }: Props) => {
                     $ {formatter.format(totalAmount)}
                 </span>
                 <span style={{ marginLeft: '2em' }}>
-                    <ButtonSubmit />
+                    <ButtonSubmit handlerForm={handlerForm} />
                 </span>
             </div>
         </div>

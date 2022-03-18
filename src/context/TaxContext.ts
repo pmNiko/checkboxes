@@ -10,7 +10,8 @@ interface Props {
     uncheckedAllItems: () => void
     itemsChecked: () => ItemTaxProps[]
     checkedAll: boolean
-    loaded: boolean
+    loaded: () => boolean
+    resetItems: () => void
 }
 
 export const TaxContext = createContext({} as Props)

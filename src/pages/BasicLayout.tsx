@@ -1,6 +1,7 @@
 import { Body } from '../components/Body/Body'
 import Footer from '../components/Footer/Footer'
 import { NavBar } from '../components/NavBar/NavBar'
+import { ToastNotifications } from '../components/Notify/ToastNotifications'
 import { Provider } from '../context/TaxContext'
 import { useItemsToCheck } from '../hooks/useItemsToCheck'
 
@@ -15,6 +16,7 @@ export const BasicLayout = () => {
         itemsChecked,
         checkedAll,
         loaded,
+        resetItems,
     } = useItemsToCheck()
 
     return (
@@ -29,8 +31,10 @@ export const BasicLayout = () => {
                 itemsChecked,
                 checkedAll,
                 loaded,
+                resetItems,
             }}
         >
+            <ToastNotifications />
             <NavBar />
             <Body />
             <Footer />
