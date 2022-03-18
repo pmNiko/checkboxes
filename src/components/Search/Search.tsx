@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material'
 import Box from '@mui/material/Box'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { TaxContext } from '../../context/TaxContext'
 import { jsonTax } from '../../database/database'
 import { ButtonSubmit } from '../Button/ButtonSubmit'
@@ -16,17 +17,33 @@ const initValues = {
     dni: '',
 }
 
+const toastLoading = () => toast.loading('Validando datos...')
+const toastSuccess = () => toast.success('Busqueda exitosa!')
+
 export const Search = ({ className }: Props) => {
     const { loadItems } = useContext(TaxContext)
-
-    useEffect(() => {
-        loadItems(jsonTax)
-    }, [])
 
     const [value, setValue] = useState(initValues)
 
     const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
         setValue({ ...value, [target.name]: target.value })
+    }
+
+    const loadItemsForm = () => {
+        toastLoading()
+        setTimeout(() => {
+            toast.dismiss(toastLoading())
+            loadItems(jsonTax)
+            toastSuccess()
+        }, 3000)
+    }
+
+    const handlerForm = () => {
+        if (value.name !== '' && value.surname !== '' && value.dni !== '') {
+            loadItemsForm()
+        } else {
+            toast.error('Complete el formulario.')
+        }
     }
 
     return (
@@ -77,7 +94,7 @@ export const Search = ({ className }: Props) => {
                     />
                 </div>
             </div>
-            <ButtonSubmit />
+            <ButtonSubmit handlerForm={handlerForm} />
         </Box>
     )
 }

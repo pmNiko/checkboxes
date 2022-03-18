@@ -15,15 +15,16 @@ export interface ItemsToCheck {
     count: number
 }
 
+const initialValues: ItemsToCheck = {
+    items: [],
+    count: 0,
+    totalAmount: 0,
+}
+
 export const useItemsToCheck = () => {
-    const [loaded, setLoaded] = useState(false)
     const { dateMatch, importByDate } = useDateMatchAmount()
     const [checkedAll, setCheckedAll] = useState(false)
-    const [itemsToCheck, setItemsToCheck] = useState<ItemsToCheck>({
-        items: [],
-        count: 0,
-        totalAmount: 0,
-    })
+    const [itemsToCheck, setItemsToCheck] = useState<ItemsToCheck>(initialValues)
 
     const loadItems = (jsonTax: any) => {
         const itemsTax = jsonTax.map((tax: any) => {
@@ -112,6 +113,14 @@ export const useItemsToCheck = () => {
         return itemsToCheck.items.filter((item) => item.checked)
     }
 
+    const resetItems = () => {
+        setItemsToCheck(initialValues)
+    }
+
+    const loaded = () => {
+        return itemsToCheck.items.length > 0
+    }
+
     useEffect(() => {
         if (itemsToCheck.items.length === itemsToCheck.count && itemsToCheck.count > 0) {
             setCheckedAll(true)
@@ -120,9 +129,6 @@ export const useItemsToCheck = () => {
         }
     }, [itemsToCheck])
 
-    useEffect(() => {
-        itemsToCheck.items.length > 0 ? setLoaded(true) : setLoaded(false)
-    }, [itemsToCheck])
 
     return {
         loadItems,
@@ -134,5 +140,6 @@ export const useItemsToCheck = () => {
         itemsChecked,
         checkedAll,
         loaded,
+        resetItems
     }
 }
